@@ -117,6 +117,14 @@ section.principale .formulaires-utilisateurs .erreur {
   font-size: 1em;
 }
 
+section.principale .formulaires-utilisateurs form {
+  display: none;
+}
+
+section.principale .formulaires-utilisateurs form.frmAffiche {
+  display: block;
+}
+
 section.principale form input {
   display: block;
   width: 400px;
@@ -142,6 +150,10 @@ section.principale form .actions-compte {
   justify-content: space-between;
   font-size: 1rem;
   padding: 5px;
+}
+
+section.principale form .actions-compte span {
+  cursor: pointer;
 }
 
 /*

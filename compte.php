@@ -6,7 +6,7 @@
     <?php if(!isset($_SESSION['uc'])) :  ?>
         <div class="formulaires-utilisateurs">
             <!-- Connexion -->
-            <form action="compte.php" method="post">
+            <form class="frmAffiche frmConnexion" action="compte.php" method="post">
                 <fieldset>
                     <legend><?= $frmLegende; ?></legend>
                     <input type="text" name="courriel" placeholder="<?= $frmCourrielPH; ?>">
@@ -14,12 +14,12 @@
                     <input type="submit" value="<?= $frmBoutonConnecter; ?>">
                 </fieldset>
                 <div class="actions-compte">
-                    <a href="#"><?= $lienMdpOublie; ?></a>
-                    <a href="#"><?= $lienNouveauCompte; ?></a>
+                    <span class="btn-mdp"><?= $lienMdpOublie; ?></span>
+                    <span class="btn-nouveau"><?= $lienNouveauCompte; ?></span>
                 </div>
             </form>
             <!-- Nouveau compte -->
-            <form action="compte.php" method="post">
+            <form class="frmNouveau" action="compte.php" method="post">
                 <fieldset>
                     <legend>Créer un nouveau compte</legend>
                     <input type="text" name="prenom" placeholder="Prénom">
@@ -33,7 +33,7 @@
                 </div>
             </form>
             <!-- Mot de passe oublié -->
-            <form action="compte.php" method="post">
+            <form class="frmMdp" action="compte.php" method="post">
                 <fieldset>
                     <legend>Réinitialiser votre mot de passe</legend>
                     <input type="text" name="courriel" placeholder="<?= $frmCourrielPH; ?>">
