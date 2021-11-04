@@ -2,14 +2,18 @@
 // Demander à PHP de gérer la session d'utilisation
 session_start();
 
+// echo '<hr>';
+// print_r($_POST);
+// echo '<hr>';
+
 // Vérifier s'il y a un paramètre d'URL dans la requête
 if(isset($_GET['action']) && $_GET['action'] == 'lo') {
     // Détruire la variable de session 'util'
     unset($_SESSION['uc']);
 }
 
-// 2) Si le formulaire est soumit
-if(isset($_POST['courriel'])) {
+// 2) Si le formulaire de ****connexion**** est soumit
+if(isset($_POST['btnSubmitConnexion'])) {
     // 3) Récupérer la saisie de l'utilisateur
     $courriel = $_POST['courriel'];
     $mdp = $_POST['mdp'];
@@ -31,6 +35,21 @@ if(isset($_POST['courriel'])) {
         $erreurConnexion = true;
     }
 }
+
+if(isset($_POST['btnSubmitNouveau'])) {
+  echo 'Formulaire nouveau compte soumit ...';
+  // Faire le nécéssaire (ajouter le détail au fichier JSON)
+  
+
+}
+
+if(isset($_POST['btnSubmitMdp'])) {
+  echo 'Formulaire mot de passe oublié soumit ...';
+  // Faire le nécéssaire (bla bla bla)
+
+}
+
+
 
 // Langues disponibles
 $languesDisponibles = [];

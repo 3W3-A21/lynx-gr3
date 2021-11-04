@@ -1,17 +1,40 @@
-let btnNouveau = document.querySelector('span.btn-nouveau');
+document.querySelectorAll('.actions-compte span').forEach(function(btnSpan) {
+    btnSpan.addEventListener('click', function() {
+        this.closest('form').classList.remove('frm-affiche');
+        document.querySelector('form.' + this.dataset.formulaire).classList.add('frm-affiche');
+    });
+});
 
-//console.log('Avec parentNode : ', btnNouveau.parentNode.parentNode);
 
-//console.log('Avec closest() : ', btnNouveau.closest('form'));
+/*
+document.querySelectorAll('.actions-compte span').forEach(function(btnSpan) {
+    btnSpan.addEventListener('click', afficherFormulaire);
+});
 
-btnNouveau.addEventListener('click', afficherFormulaireNouveauCompte);
-
-function afficherFormulaireNouveauCompte() {
-    //console.log('Dans la fonction, this : ', this);
-    //console.log('ClassList du formulaire (avant) : ', this.closest('form').classList);
-    // Retirer la classe 'frmAffiche' du formulaire le plus proche du bouton cliqué
-    this.closest('form').classList.remove('frmAffiche');
-    //console.log('ClassList du formulaire (après) : ', this.closest('form').classList);
-    // Afficher le formulaire de création de compte
-    document.querySelector('form.frmNouveau').classList.add('frmAffiche');
+function afficherFormulaire() {
+    this.closest('form').classList.remove('frm-affiche');
+    document.querySelector('form.' + this.dataset.formulaire).classList.add('frm-affiche');
 }
+*/
+/*
+let tousLesBoutons = document.querySelectorAll('.actions-compte span');
+//console.log("Tous les boutons : ", tousLesBoutons)
+tousLesBoutons.forEach(function(btnSpan) {
+    btnSpan.addEventListener('click', afficherFormulaire);
+});
+*/
+
+/*
+let btnNouveau = document.querySelector('span.btn-nouveau');
+let btnMdp = document.querySelector('span.btn-mdp');
+let btnConnexion = document.querySelector('span.btn-connexion');
+
+if(btnNouveau && btnMdp && btnConnexion) {
+    btnNouveau.addEventListener('click', afficherFormulaire);
+    btnMdp.addEventListener('click', afficherFormulaire);
+    btnConnexion.addEventListener('click', afficherFormulaire);
+}
+*/
+
+
+// console.log("Accès aux attributs 'data' : ", document.querySelector("ul.liste-test li:first-child").dataset.infoimportante);

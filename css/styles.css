@@ -121,7 +121,7 @@ section.principale .formulaires-utilisateurs form {
   display: none;
 }
 
-section.principale .formulaires-utilisateurs form.frmAffiche {
+section.principale .formulaires-utilisateurs form.frm-affiche {
   display: block;
 }
 
@@ -154,6 +154,11 @@ section.principale form .actions-compte {
 
 section.principale form .actions-compte span {
   cursor: pointer;
+}
+
+section.principale form .actions-compte span:hover {
+  font-weight: bold;
+  color: goldenrod;
 }
 
 /*

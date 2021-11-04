@@ -6,10 +6,10 @@
         <div>
             <h1><?= $amorce; ?></h1>
             <h3><?= $sousTitre; ?></h3>
-            <ul>
-                <li><?= $liste1; ?></li>
-                <li><?= $liste2; ?></li>
-                <li><?= $liste3; ?></li>
+            <ul class="liste-test">
+                <li data-infoimportante="530.99"><?= $liste1; ?></li>
+                <li data-infoimportante="120.85"><?= $liste2; ?></li>
+                <li data-infoimportante="65.42"><?= $liste3; ?></li>
             </ul>
         </div>
         <div>
