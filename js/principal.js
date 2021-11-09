@@ -1,40 +1,12 @@
+// Gérer l'affichage des formulaires de gestion d'utilisateurs
 document.querySelectorAll('.actions-compte span').forEach(function(btnSpan) {
     btnSpan.addEventListener('click', function() {
+        // Cache le formulaire courant
         this.closest('form').classList.remove('frm-affiche');
+        // Affiche le formulaire ciblé par le bouton
         document.querySelector('form.' + this.dataset.formulaire).classList.add('frm-affiche');
+        // Cacher tout message 'utilisateur'
+        //document.querySelector('.message-util').style.display = 'none'; // Pas la meilleure façon
+        document.querySelector('.message-util').classList.add('cacher'); // Mieux
     });
 });
-
-
-/*
-document.querySelectorAll('.actions-compte span').forEach(function(btnSpan) {
-    btnSpan.addEventListener('click', afficherFormulaire);
-});
-
-function afficherFormulaire() {
-    this.closest('form').classList.remove('frm-affiche');
-    document.querySelector('form.' + this.dataset.formulaire).classList.add('frm-affiche');
-}
-*/
-/*
-let tousLesBoutons = document.querySelectorAll('.actions-compte span');
-//console.log("Tous les boutons : ", tousLesBoutons)
-tousLesBoutons.forEach(function(btnSpan) {
-    btnSpan.addEventListener('click', afficherFormulaire);
-});
-*/
-
-/*
-let btnNouveau = document.querySelector('span.btn-nouveau');
-let btnMdp = document.querySelector('span.btn-mdp');
-let btnConnexion = document.querySelector('span.btn-connexion');
-
-if(btnNouveau && btnMdp && btnConnexion) {
-    btnNouveau.addEventListener('click', afficherFormulaire);
-    btnMdp.addEventListener('click', afficherFormulaire);
-    btnConnexion.addEventListener('click', afficherFormulaire);
-}
-*/
-
-
-// console.log("Accès aux attributs 'data' : ", document.querySelector("ul.liste-test li:first-child").dataset.infoimportante);

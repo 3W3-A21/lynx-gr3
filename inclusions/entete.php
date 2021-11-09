@@ -12,18 +12,18 @@ if(isset($_GET['action']) && $_GET['action'] == 'lo') {
     unset($_SESSION['uc']);
 }
 
-// 2) Si le formulaire de ****connexion**** est soumit
+// Si le formulaire de ****connexion**** est soumit
 if(isset($_POST['btnSubmitConnexion'])) {
-    // 3) Récupérer la saisie de l'utilisateur
+    // Récupérer la saisie de l'utilisateur
     $courriel = $_POST['courriel'];
     $mdp = $_POST['mdp'];
 
-    // 4) Lire l'info sur TOUS les utilisateurs dans le fichier JSON
+    // Lire l'info sur TOUS les utilisateurs dans le fichier JSON
     $utilsTexte = file_get_contents('data/utilisateurs.json');
     $utilsTab = json_decode($utilsTexte, true);
     //print_r($utilsTab);
 
-    // 5) Tester s'il y a un utilisateur ayant l'adresse de courriel donnée 
+    // Tester s'il y a un utilisateur ayant l'adresse de courriel donnée 
     // et si les mots de passe coincident
     if(isset($utilsTab[$courriel]) 
             && $utilsTab[$courriel]['mdp'] == hash('sha512', $mdp)) {
@@ -32,14 +32,54 @@ if(isset($_POST['btnSubmitConnexion'])) {
         $_SESSION['uc'] = $courriel;
     }
     else {
-        $erreurConnexion = true;
+        $messageUtilisateur = ["Erreur de connexion : réessayez !", "erreur"];
     }
 }
 
+// Si le formulaire de création de nouveau compte est soumit
 if(isset($_POST['btnSubmitNouveau'])) {
-  echo 'Formulaire nouveau compte soumit ...';
-  // Faire le nécéssaire (ajouter le détail au fichier JSON)
+  // Étape 1 : récupérer la saisie de l'utilisateur
+  $prenom = $_POST['prenom'];
+  $nom = $_POST['nom'];
+  $courriel = $_POST['courriel'];
+  $mdpEncrypte = hash('sha512', $_POST['mdp']);
   
+  // Étape 2 : Lire et décoder le fichier JSON 'utilisateurs.json'
+  $utilisateurs = json_decode(file_get_contents('data/utilisateurs.json'), true);
+  // print_r($utilisateurs);
+
+  // Vérifier si le courriel donné dans le formulaire n'est pas déjà associé
+  // à un compte utilisateur existant
+  if(isset($utilisateurs[$courriel])) {
+    // Courriel déjà utilisé
+    // Afficher un message d'erreur à l'endroit approprié dans la page Web
+    $messageUtilisateur = ["Ce courriel est déjà utilisé : le compte n'a pas été créé.", "erreur"];
+    $frmActif = 'frm-nouveau';
+  }
+  else {
+    // On peut créer le nouveau compte
+    // 2.a) Créer un tableau PHP représentant le nouveau compte
+    $nouvelUtil = [
+      'nom'     => $nom,
+      'prenom'  => $prenom,
+      'mdp'     => $mdpEncrypte,
+      'doc'     => date('Y-m-d')
+    ];
+
+    // 2.b) Ajouter ce tableau dans le grand tableau des utilisateurs à 
+    // l'étiquette correspondant à l'adresse de courriel saisie
+    $utilisateurs[$courriel] = $nouvelUtil;
+    // echo '<hr>';
+    // print_r($utilisateurs);
+
+    // 2.c) Convertir le tableau $utilisateurs en format JSON et écrire la chaîne
+    // de caractères ainsi obtenue dans le fichier "utilisateurs.json"
+    file_put_contents('data/utilisateurs.json', json_encode($utilisateurs));
+
+    // 2.d) Afficher un message confirmant la création du compte à l'endroit 
+    // approprié de la page Web
+    $messageUtilisateur = ["Votre compte a été créé avec succès.", "info"];
+  }
 
 }
 

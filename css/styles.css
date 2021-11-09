@@ -1,6 +1,15 @@
 /*
   STRUCTURE ET STYLES COMMUNS
 */
+
+.cacher  {
+  display: none;
+}
+
+.devoiler  {
+  display: block;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -109,12 +118,19 @@ section.principale form fieldset {
   font-size: 1.3em;
 }
 
-section.principale .formulaires-utilisateurs .erreur {
-  border: 3px solid #900;
+section.principale .formulaires-utilisateurs .message-util {
   border-radius: 2px;
   margin: 10px 0;
   padding: 10px;
   font-size: 1em;
+}
+
+.message-util.erreur {
+  border: 3px solid #900;
+}
+
+.message-util.info {
+  border: 3px solid #090;
 }
 
 section.principale .formulaires-utilisateurs form {
@@ -137,6 +153,17 @@ section.principale form input {
   font-size: 1rem;
   color: #141a2e;
 }
+
+
+section.principale form input:required {
+  border: 3px solid orange;
+}
+
+section.principale form input:invalid {
+  background-color: rgb(223, 141, 141);
+}
+
+
 
 section.principale form input[type="submit"] {
   background-color: olivedrab;
